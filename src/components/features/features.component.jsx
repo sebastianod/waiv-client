@@ -2,7 +2,7 @@ import "./features.styles.scss";
 import ColorPicker from "../color-picker/color-picker.component";
 import Slider from "../slider/slider.component";
 import Output from "../output/output.component";
-import { sendReceiveData } from "../../api/api";
+import { useSendReceiveData } from "../../api/api"; //custom hook for sending and receiving data that uses isLoading state from WaveContext
 import { useContext } from "react";
 import { ValuesContext } from "../../context/values.context";
 import { WaveContext } from "../../context/wave.context";
@@ -10,6 +10,7 @@ import { WaveContext } from "../../context/wave.context";
 const Features = () => {
   const { values } = useContext(ValuesContext); //values to send to py
   const { svgText, setSvgText } = useContext(WaveContext); //our wave
+  const sendReceiveData = useSendReceiveData(); //contains a isLoading state
 
   const handleSubmit = (event) => {
     event.preventDefault();
